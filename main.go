@@ -35,8 +35,16 @@ func main() {
       Name: "add",
       Usage: "add new key-value line in envfile",
       Action: func(c *cli.Context) error {
-        c.String("envfile")
-        return nil
+        filepath := c.String("envfile")
+        if len(c.Args()) == 2 {
+          key := c.Args().Get(0)
+          value := c.Args().Get(1)
+          AddNewEnvToFile(filepath, key, value)
+          AddNewEnvToFile(filepath + ".sample", key, value)
+          return nil
+        } else {
+          return nil
+        }
       },
       Flags: []cli.Flag {
         cli.StringFlag {
@@ -65,3 +73,6 @@ func GenerateSampleEnvfile(filepath string) {
   fmt.Printf("generated sample file: %v => %v\n", filepath, filepath + ".sample")
 }
 
+func AddNewEnvToFile(filepath string, key string, value string) {
+  AppendLineToFile(filepath, key + "=" + value)
+}
