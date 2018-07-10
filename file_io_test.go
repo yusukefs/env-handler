@@ -25,3 +25,15 @@ func TestWriteEnvFile(t *testing.T) {
     t.Errorf("not equal slice")
   }
 }
+
+func TestAppendLineToFile(t *testing.T) {
+  AppendLineToFile("./testdata/envfile-append", `APPEND='append val'`)
+
+  actual := ReadEnvFile("./testdata/envfile-append")
+  expected := ReadEnvFile("./testdata/envfile-append.expected")
+
+  if !reflect.DeepEqual(actual, expected) {
+    t.Errorf("failed at appending line to file")
+  }
+}
+

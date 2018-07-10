@@ -43,3 +43,15 @@ func WriteEnvFile(filepath string, texts []string) error {
   return nil
 }
 
+func AppendLineToFile(filepath string, line string) {
+  file, err := os.OpenFile(filepath, os.O_APPEND|os.O_WRONLY|os.O_CREATE, 0644)
+  if err != nil {
+    log.Fatal(err)
+  }
+  defer file.Close()
+
+  if _, err = file.WriteString(line); err != nil {
+    log.Fatal(err)
+  }
+}
+
