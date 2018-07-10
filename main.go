@@ -13,7 +13,6 @@ func main() {
   app.Usage = "This app handles env file."
   app.Version = "0.0.1"
 
-
   app.Commands = []cli.Command {
     {
       Name: "gen-sample",
@@ -56,14 +55,6 @@ func main() {
     },
   }
 
-  app.Action = func(context *cli.Context) error {
-    if len(context.Args()) == 0 {
-      fmt.Println("USAGE: env-handler [-option]")
-    }
-
-    return nil
-  }
-
   app.Run(os.Args)
 }
 
@@ -76,3 +67,4 @@ func GenerateSampleEnvfile(filepath string) {
 func AddNewEnvToFile(filepath string, key string, value string) {
   AppendLineToFile(filepath, key + "=" + value)
 }
+
