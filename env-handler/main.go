@@ -22,7 +22,7 @@ func main() {
         filepath := c.String("envfile")
         fmt.Println(filepath)
         texts := ReadEnvFile(filepath)
-        WriteEnvFile(filepath + ".sample", texts)
+        WriteEnvFile(filepath + ".sample", BuildValueRemovedLines(texts))
         fmt.Println("generated sample file")
         return nil
       },
