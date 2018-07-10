@@ -20,10 +20,7 @@ func main() {
       Usage: "generate sample file from existing env file",
       Action: func(c *cli.Context) error {
         filepath := c.String("envfile")
-        fmt.Println(filepath)
-        texts := ReadEnvFile(filepath)
-        WriteEnvFile(filepath + ".sample", BuildValueRemovedLines(texts))
-        fmt.Println("generated sample file")
+        GenerateSampleEnvfile(filepath)
         return nil
       },
       Flags: []cli.Flag {
@@ -60,5 +57,12 @@ func main() {
   }
 
   app.Run(os.Args)
+}
+
+func GenerateSampleEnvfile(filepath string) {
+  fmt.Println(filepath)
+  texts := ReadEnvFile(filepath)
+  WriteEnvFile(filepath + ".sample", BuildValueRemovedLines(texts))
+  fmt.Println("generated sample file")
 }
 
