@@ -34,6 +34,21 @@ func main() {
         },
       },
     },
+    {
+      Name: "add",
+      Usage: "add new key-value line in envfile",
+      Action: func(c *cli.Context) error {
+        c.String("envfile")
+        return nil
+      },
+      Flags: []cli.Flag {
+        cli.StringFlag {
+          Name: "envfile, e",
+          Value: "./.env",
+          Usage: "path to envfile",
+        },
+      },
+    },
   }
 
   app.Action = func(context *cli.Context) error {
