@@ -60,9 +60,8 @@ func main() {
 }
 
 func GenerateSampleEnvfile(filepath string) {
-  fmt.Println(filepath)
   texts := ReadEnvFile(filepath)
   WriteEnvFile(filepath + ".sample", BuildValueRemovedLines(texts))
-  fmt.Println("generated sample file")
+  fmt.Printf("generated sample file: %v => %v\n", filepath, filepath + ".sample")
 }
 
