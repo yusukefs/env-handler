@@ -4,7 +4,7 @@ import (
   "strings"
 )
 
-func GetKeyFromSingleLine(line string) string {
+func ConvertSingleLineTosample(line string) string {
   line_split := strings.SplitN(line, "=", 2)
   if len(line_split) == 1 {
     return line
@@ -16,7 +16,7 @@ func GetKeyFromSingleLine(line string) string {
 func BuildValueRemovedLines(original_lines []string) []string{
   lines := make([]string, 0)
   for _, line := range original_lines {
-    lines = append(lines, GetKeyFromSingleLine(line))
+    lines = append(lines, ConvertSingleLineTosample(line))
   }
 
   return lines
