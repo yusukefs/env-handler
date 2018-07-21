@@ -5,14 +5,18 @@ import (
 )
 
 func ConvertSingleLineToSample(line string) string {
-  if string(([]rune(line)[0])) == "#" {
+  if line == "" {
     return line
   } else {
-    line_split := strings.SplitN(line, "=", 2)
-    if len(line_split) == 1 {
+    if string(([]rune(line)[0])) == "#" {
       return line
     } else {
-      return line_split[0] + "="
+      line_split := strings.SplitN(line, "=", 2)
+      if len(line_split) == 1 {
+        return line
+      } else {
+        return line_split[0] + "="
+      }
     }
   }
 }

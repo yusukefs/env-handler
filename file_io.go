@@ -50,7 +50,7 @@ func AppendLineToFile(filepath string, line string) {
   }
   defer file.Close()
 
-  if _, err = file.WriteString("\n" + line); err != nil {
+  if _, err = file.WriteString(line + "\n"); err != nil {
     log.Fatal(err)
   }
 }
