@@ -26,6 +26,15 @@ func TestWriteEnvFile(t *testing.T) {
   }
 }
 
+func TestIsLastLineEmpty(t *testing.T) {
+  actual := IsLastLineEmpty("./testdata/envfile")
+  expected := true
+
+  if actual != expected {
+    t.Errorf("Last line is empty but IsLastLineEmpty returned false")
+  }
+}
+
 func TestAppendLineToFile(t *testing.T) {
   AppendLineToFile("./testdata/envfile-append", `APPEND='append val'`)
 
