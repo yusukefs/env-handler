@@ -43,6 +43,16 @@ func WriteEnvFile(filepath string, texts []string) error {
   return nil
 }
 
+func IsLastLineEmpty(filepath string) bool {
+  texts := ReadEnvFile(filepath)
+
+  if texts[len(texts) - 1] == "" {
+    return true
+  } else {
+    return false
+  }
+}
+
 func AppendLineToFile(filepath string, line string) {
   file, err := os.OpenFile(filepath, os.O_APPEND|os.O_WRONLY|os.O_CREATE, 0644)
   if err != nil {
@@ -50,7 +60,15 @@ func AppendLineToFile(filepath string, line string) {
   }
   defer file.Close()
 
-  if _, err = file.WriteString(line + "\n"); err != nil {
+  var string_to_write string
+  if IsLastLineEmpty(filepath) {
+    fmt.Println("empty")
+    string_to_write = line + "\n" + ""
+  } else {
+    fmt.Println("not empty")
+    string_to_write = "\n" + line + "\n" + "not empty"
+  }
+  if _, err = file.WriteString(string_to_write); err != nil {
     log.Fatal(err)
   }
 }
