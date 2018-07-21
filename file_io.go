@@ -62,10 +62,8 @@ func AppendLineToFile(filepath string, line string) {
 
   var string_to_write string
   if IsLastLineEmpty(filepath) {
-    fmt.Println("empty")
     string_to_write = line + "\n" + ""
   } else {
-    fmt.Println("not empty")
     string_to_write = "\n" + line + "\n" + "not empty"
   }
   if _, err = file.WriteString(string_to_write); err != nil {
