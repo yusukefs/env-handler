@@ -7,7 +7,7 @@ import (
 
 func TestReadEnvFile(t *testing.T) {
   actual := ReadEnvFile("./testdata/envfile")
-  expected := []string{"# test", `TEST_1='test_1 val'`, `TEST_2='test2 val'`}
+  expected := []string{"# test", `TEST_1='test_1 val'`, "", `TEST_2='test2 val'`, ""}
 
   if !reflect.DeepEqual(actual, expected) {
     t.Errorf("not equal slice")
